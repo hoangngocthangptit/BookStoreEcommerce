@@ -1,0 +1,39 @@
+<div style="width: 100%;" style="height: 15%;">
+    <app-toolbar flexLayout="row" (toggleEvent)="nameEventHander($event)">
+    </app-toolbar>
+
+</div>
+<div class="main-container">
+    <div class="container">
+        <div *ngIf="bookListdata.length==0" >
+          <img src="assets\no-product.jpg" style="margin: 0 369px">
+          <h1 style="text-align: center; margin: 200px;">không có sản phẩm nào!</h1>
+        </div>
+        <div *ngFor=" let book of bookListdata">
+            <mat-card style="display: flex;flex-direction: row;  padding: 1rem;">
+                <div>
+                    <mat-card-title style="padding: 1rem;" matTooltip="Update Image">
+                        <img src="assets\bookimage\{{book.image}}" style="height: 13rem; width: 10rem; padding: 16px 0px 16px 16px ;" />
+                    </mat-card-title>
+                </div>
+                <div style="width: 20rem;">
+                    <mat-card-content style="display: flex;flex-direction: column;flex-wrap: nowrap;width: auto; margin-top: 10px; margin-bottom: 0px;">
+                        <div class="bookname">Book Name : {{ book.bookName }}</div>
+                        <div class="authorname">Author name : {{ book.authorName }}</div>
+                        <div class="description">Description : {{ book.bookDetails }}</div>
+                        <div class="description">Quantity of book : {{ book.quantityOfBook }}</div>
+                        <div class="price">Total Price : {{"Vnd "+book.price }}</div>
+
+                        <div class="status">Order Status : <label style="color: green;">{{ book.status }}</label> </div>
+
+                        <div style="display: flex; justify-content: flex-start; margin-left: 20px;">
+                        </div>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div>
+    <app-footer></app-footer>
+</div>

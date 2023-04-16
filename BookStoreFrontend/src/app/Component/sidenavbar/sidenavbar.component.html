@@ -1,0 +1,53 @@
+<div class="container" *ngIf="isAdmin">   <div style="margin-left: 6px;">
+  <img style="height: 125px; width: 144px ;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
+</div>
+  <div style="height: 60px; width: 60px; padding: 0px; margin: 0px;" *ngIf="isLogin">
+    <h4 style="font-weight: bold;     margin: 0 43px;">{{name}}</h4>
+  </div>
+  <div *ngIf="isLogin">
+    <h4 style="font-weight: inherit; margin: -27px 12px">{{email}}</h4>
+  </div>
+  <mat-divider></mat-divider>
+  <button mat-button class="menu-button" (click)="Home()">
+    <mat-icon>home</mat-icon>
+    <span>Trang chủ</span>
+  </button>
+  <button mat-button class="menu-button" (click)="books()">
+    <mat-icon>store</mat-icon>
+    <span>Tiệm sách</span>
+  </button>
+  <button mat-button class="menu-button" (click)="User()">
+    <mat-icon>person</mat-icon>
+    <span>Tài khoản</span>
+  </button>
+  <button mat-button class="menu-button" (click)="sellerBooks()">
+    <mat-icon>assignment_turned_in</mat-icon>
+    <span>Phê Duyệt sách</span>
+  </button>
+  <button mat-button class="menu-button" (click)="orders()">
+    <mat-icon>books</mat-icon>
+    <span>Đơn hàng</span>
+  </button>
+
+</div>
+<div class="container" *ngIf="isSeller">
+
+    <div style="margin-left: 6px;">
+        <img style="height: 125px; width: 144px;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
+    </div>
+    <div style="height: 60px; width: 60px; padding: 0px; margin: 0px;" *ngIf="isLogin">
+        <h4 style="font-weight: bold; margin: 0 43px;">{{name}}</h4>
+    </div>
+    <div *ngIf="isLogin">
+        <h4 style="font-weight: inherit;margin: -27px 12px">{{email}}</h4>
+    </div>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" (click)="sellerBook()">
+      <mat-icon>assignment_turned_in</mat-icon>
+        <span>Cập nhật sách</span>
+    </button>
+    <button mat-button class="menu-button" (click)="orderStatus()">
+      <mat-icon>books</mat-icon>
+        <span>Đơn hàng</span>
+    </button>
+</div>

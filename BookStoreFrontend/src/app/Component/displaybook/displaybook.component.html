@@ -1,0 +1,174 @@
+<div class="main-container">
+    <div class="main-container">
+        <div style="
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 173px;
+    right: -173px;
+    width: 350px;">
+            <div style="width: 500%;">
+                <a id="btnZaloChat" href="https://zalo.me/0962983469" target="_blank" rel="noopener"
+                    class="animatedbounce"><img src="https://cdn2.cellphones.com.vn/x/media/icons/icon-zalo.png"
+                        class="a" alt="Zalo Button" width="3%"
+                        style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ; color: black;"></a>
+            </div>
+        </div>
+        <div style="
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 100px;
+    right: -173px;
+    width: 350px;">
+            <div style="width: 500%;">
+                <a id="btnMess" href="https://www.messenger.com/t/100008063413243" target="_blank" rel="noopener"><img
+                        src="assets\248323495_327656939175726_192057552778184696_n.png" class="a" alt="Zalo Button"
+                        width="3%"
+                        style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ; color: black;"></a>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="container">
+                <div *ngIf="bookList.length!=0">
+                    <div class="title" style=" 
+                    margin: 43px 238px;
+                    font-style: italic;
+                    font-size: 4.155rem;
+                    width: 100%;">Danh sách sản phẩm
+                        <span style="font-size: 15px; font-family: Lato, Regular; color: rgb(139, 136, 136);">
+                            ({{ size }} &nbsp;Sản phẩm)
+                        </span>
+                    </div>
+                    <!-- <div>
+                        <button style="font-size: 24px; " mat-raised-button><i class="fa fa-filter" aria-hidden="true"></i>
+              Lọc</button>
+                        <mat-form-field appearance="fill" class="col-4">
+                            <mat-select [(ngModel)]="selectedValue" (ngModelChange)="onChange($event)">
+                                <mat-option *ngFor="let dv of selected" [value]="dv.value">{{dv.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-control-custom" style="margin: 0 -232px;">
+                            <mat-card-header>
+                                <mat-card-title><i class="fa fa-filter" aria-hidden="true"></i>Bộ lọc
+                                    Sách</mat-card-title>
+                            </mat-card-header>                 
+                            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                                [(ngModel)]="selectedValue" (ngModelChange)="onChange($event)">
+                                <mat-radio-button class="example-radio-button" *ngFor="let option of selected"
+                                    [value]="option.value">
+                                    {{ option.name }}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="alert alert-danger text-justify" *ngIf="bookList.length==0">Không có sản phẩm nào</div>
+
+                <div class="list-books">
+
+                    <div *ngFor="let book of bookList| booksearchpipe:bookSearch">
+
+                        <mat-card style="height: 22.5em; width: 220px;  margin-right: 40px;" class="tooltip1">
+                            <mat-card-title matTooltip="Book Image" (click)="Deatails(book.bookId)"
+                                style="height: 117px;">
+                                <img src="assets\bookimage\{{book.image}}" style="height: 150px; width: 90px;
+                      margin-left: 55px; margin-right: 55px; padding-top: 20px; padding-bottom: 20px; " />
+                            </mat-card-title>
+                            <mat-card-content style="width: 16em;">
+                                <div class="out-of-stock " *ngIf="!book.noOfBooks "
+                                    style="color: aliceblue; background-color: #EE0000; font-family:revert ;margin: -25px 11px">
+                                    Hết hàng
+                                </div>
+                                <div class="sale" *ngIf="book.priceSale>0"
+                                    style="color: #EE0000; background-color: 	#F2FF00; font-family:revert ;">Sale
+                                    <!-- {{(book.price-book.priceSale)/book.price*100}} % -->
+                                    {{matGrout(book)}} %
+                                </div>
+                                <div class="bookname ">{{ book.bookName }}</div>
+
+
+                                <span class="tooltiptext">
+                                    <h2 style="text-align: left; padding-left: 10px;"> Details</h2>
+                                    {{ book.bookDetails }}
+                                </span>
+
+                                <div class="authorname ">Tác giả : {{ book.authorName }}</div>
+                                <div class="row" style="margin: 0 5px;" >
+                                    <div class="price "
+                                        style="color: rgb(170, 163, 163) ;font-size: 20px;text-decoration:line-through;margin: 0 12px ;"
+                                        *ngIf="book.priceSale>0"> {{ book.price }} đ</div>         
+                                    <div class="price " style="color: #f83f3f ;font-size: 20px;"
+                                        *ngIf="book.priceSale==null"> {{ book.price }} đ</div>
+                                    <div class="price " style="color: #f83f3f ;font-size: 20px;" *ngIf="book.priceSale>0">
+                                        {{ book.priceSale }} đ</div>
+                                </div>
+
+                                <div class="availablity " style="color: rgb(79, 6, 163); "
+                                    *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
+                                    Only {{ book.noOfBooks }} left hurry up
+                                </div>
+                                <ng-template #elsecondition>
+                                    <div class="availablity " style="color: rgb(2, 110, 2); " *ngIf="book.noOfBooks ">
+                                        Hiện có: {{ book.noOfBooks }}
+                                    </div>
+                                    <div style="height: 26px; " *ngIf="!book.noOfBooks "></div>
+                                </ng-template>
+                                <div class="cart-buttons " *ngIf="book.noOfBooks && value[book.bookId] !=book.bookId ">
+                                    <div>
+                                        <button class="addtobag " (output)="getUpdatedNotes($event)"
+                                            (click)="addtobag(book.bookId)" #clickState mat-button
+                                            matTooltip="Thêm vào giỏ"><i class="fa fa-cart-plus" aria-hidden="true"
+                                                style="font-size: 24px;"></i></button>
+                                    </div>
+                                    <div>
+                                        <button (click)="addtoWish(book.bookId)" style="border: 1px solid #e0d6d6;
+                              outline: none;
+                              width: 83px;
+                              height: 35px;
+                              --c:#E95A49;
+                              background-color: white;
+                              border-radius: 10px;" matTooltip="Yêu thích"><i class="fa fa-heart"
+                                                style="color:red ;font-size: 24px; line-height: 28px;"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="addedbtn " *ngIf="book.noOfBooks && value[book.bookId]==book.bookId ">
+                                    <button style=" height: 32px; width: 191px; background-color: #3371b5;
+                          border-radius: 10px; color: whitesmoke; text-align: center; " mat-button>
+                                        Đã thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                                <div class="addedbtn " (click)="addtoWish(book.bookId)" *ngIf="!book.noOfBooks">
+                                    <button style=" height: 34px; width: 191px; display: flex;
+                          align-items: center; justify-content: center;
+                          border: 1px solid #e0d6dca8;
+                              outline: none; border-radius: 10px;    margin-top: 8px;
+                            opacity: 1; " mat-button matTooltip="Yêu thích"><i class="fa fa-heart"
+                                            style="color:red ;font-size: 24px;"></i>
+                                    </button>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center">
+                <div class="pagination" *ngIf="bookList.length!=0">
+                    <a (click)="previos($event)" style=" margin-right: 12px; padding-right: 10px; border-radius: 50px;"
+                        href="#" href="#">
+                        < </a>
+                            <a *ngFor="let p of totalPage; let i=index " href="" fxFlexAlign="center"
+                                (click)="SetPage(i,$event)" [ngClass]="{'active':i==page}" style="color: black;">{{i +
+                                1}}</a>
+                            <a (click)="next($event)"
+                                style=" margin-right: 12px; padding-right: 10px; border-radius: 50px;" href="#"
+                                href="#">> </a>
+                </div>
+            </div>
+        </div>

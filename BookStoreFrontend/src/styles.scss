@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th.mat-header-cell{
+    font-size: 15px;
+    border: 1px solid #dddddd;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(4, 25, 131, 0.827);
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  tr:hover {background-color: coral;}
+
+*:focus {
+    outline: 0 !important;
+}
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import '~font-awesome/css/font-awesome.css';

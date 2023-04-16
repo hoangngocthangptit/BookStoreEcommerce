@@ -1,0 +1,99 @@
+<div style="width: 100%;" style="height: 11%;">
+  <app-toolbar flexLayout="row" (toggleEvent)="nameEventHander($event)">
+  </app-toolbar>
+  <!-- <app-toolbar flexLayout="row"></app-toolbar> -->
+</div>
+<div class="dashboard-content" style="height: 84%; margin-left: 0%; padding-left: 0%;">
+  <div class="sidenav-div" *ngIf="isAdmin || isSeller">
+    <mat-sidenav-container class="sidenav-container">
+
+      <mat-sidenav [(opened)]="opened2" mode="side" class="matSidenav">
+        <app-sidenavbar class="app-sidenavbar" fxFlex></app-sidenavbar>
+      </mat-sidenav>
+
+      <mat-sidenav-content class="sidenav-content">
+
+        <div *ngIf="isAdmin">
+          <div>
+            <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+          </div>
+          <div class="row">
+            <div class="col-9">
+              <mat-card style="width: 40%">
+                <mat-card-content>
+                  <table class="flex-auto bordered" mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="stt">
+                      <th mat-header-cell *matHeaderCellDef style=" width: 4%"> STT</th>
+                      <td mat-cell *matCellDef="let row; let i = index">
+                        {{ i + 1 }}
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Thang">
+                      <th mat-header-cell *matHeaderCellDef style="text-align: center;;width: 16%">Tháng</th>
+                      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.label}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Doanhthu">
+                      <th mat-header-cell *matHeaderCellDef style="text-align: center;;width: 16%"> Doanh thu</th>
+                      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.y}} đ </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+                  </table>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div class="col-9">
+              <mat-card style="width: 40% ;    margin: -664px 598px">
+                <mat-card-content>
+                  <table class="flex-auto bordered" mat-table [dataSource]="dataSl">
+                    <ng-container matColumnDef="stt">
+                      <th mat-header-cell *matHeaderCellDef style=" width: 4%"> STT</th>
+                      <td mat-cell *matCellDef="let row; let i = index">
+                        {{ i + 1 }}
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Thang">
+                      <th mat-header-cell *matHeaderCellDef style="text-align: center;width: 16%">Tháng</th>
+                      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.label}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="soDonhang">
+                      <th mat-header-cell *matHeaderCellDef style="text-align: center;width: 16%"> Số luợng đơn hàng
+                      </th>
+                      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.y}} Đơn </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="discolum "></tr>
+                    <tr mat-row *matRowDef="let row; columns: discolum; "></tr>
+                  </table>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div class="col-9">
+              <mat-card style="margin: -579px 1176px;">
+                <div>
+                  <canvasjs-chart [options]="chartOptions1" [styles]="{width: '30%', height:'360px'}"></canvasjs-chart>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+          <div class="row">
+            <button (click)="doExport()"
+              style="width: 10rem;  color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);;     margin: 19px 141px;"
+              mat-button><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel bảng 1</button>
+            <button (click)="doExport1()"
+              style="width: 10rem;  color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);;     margin: 19px 300px;"
+              mat-button><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel bảng 2</button>
+          </div>
+        </div>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+
+  </div>
+
+
+  <div *ngIf=" !isAdmin">
+    <app-displaybook></app-displaybook>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

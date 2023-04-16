@@ -1,0 +1,33 @@
+<app-toolbar></app-toolbar>
+<mat-card-content>
+    <mat-card fxFlex="35" style="margin: 131px 537px; max-width: 37;">
+        <mat-toolbar class="place-content-between rounded-l mat-elevation-z1">
+            <span>Đổi mật khẩu</span>
+        </mat-toolbar>
+        <form [formGroup]="formBCTKCC">
+            <mat-form-field class="w98">
+                <mat-label>Nhập mật khẩu mới<sup style="color: red;">*</sup></mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error> Mật khẩu phải có 8 kí tự trở nên </mat-error>
+            </mat-form-field>
+        </form>
+        <div class="row">
+            <div class="col-1">
+                <button mat-raised-button color="primary" class="margin-r10 button-defaul"
+                    style="border-radius: 10px;margin: 0 556px;" (click)="doUpdate()">
+                    <span><i class="fa fa-save"></i> Lưu</span>
+                </button>
+            </div>
+            <div class="col-1">
+                <button mat-raised-button color="warn" class="margin-r10 button-defaul"
+                    style="border-radius: 10px;margin: 0 384px;" (click)="goBack()">
+                    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span> Quay lại
+                </button>
+            </div>
+        </div>
+    </mat-card>
+</mat-card-content>

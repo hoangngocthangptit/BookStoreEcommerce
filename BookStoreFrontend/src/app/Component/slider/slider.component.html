@@ -1,0 +1,13 @@
+<div>
+  <marquee direction="left"
+    style="font-family: Rajdhani, sans-serif; color: rgba(4, 25, 131, 0.827);background-color: white;" bgcolor="#00224f"
+    scrolldelay="100" behavior="loop">Chào mừng quý khách đến với cửa hàng của chúng tôi !</marquee>
+</div>
+<div style="height: auto">
+  <mat-carousel timings="100ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="auto" proportion="25"
+    slides="3" [loop]="true" [hideIndicators]="false" [useKeyboard]="true" [useMouseWheel]="false" orientation="ltr">
+    <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
+      overlayColor="#00000040" [hideOverlay]="true">
+    </mat-carousel-slide>
+  </mat-carousel>
+</div>

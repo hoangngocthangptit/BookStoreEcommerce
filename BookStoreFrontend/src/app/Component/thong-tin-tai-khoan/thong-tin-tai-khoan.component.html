@@ -1,0 +1,42 @@
+<app-toolbar></app-toolbar>
+<mat-card-content>
+    <mat-card fxFlex="35" style="margin: 131px 537px; max-width: 37;">
+        <mat-toolbar class="place-content-between rounded-l mat-elevation-z1">
+            <span>Thông Tin tài khoản</span>
+        </mat-toolbar>
+        <form [formGroup]="formBCTKCC">
+            <mat-form-field class="w98">
+                <mat-label>Email<sup style="color: red;">*</sup></mat-label>
+                <textarea matInput type="text" formControlName="Email" readonly="true"></textarea>
+                <mat-error> Vui lòng nhập thông tin </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w98">
+                <mat-label>Họ tên<sup style="color: red;">*</sup></mat-label>
+                <textarea matInput type="text" formControlName="Name" autofocus></textarea>
+                <mat-error> Vui lòng nhập thông tin </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w98">
+                <mat-label>Số điện thoại<sup style="color: red;">*</sup></mat-label>
+                <textarea matInput type="text" formControlName="SDT" ></textarea>
+                <mat-error> Vui lòng nhập thông tin </mat-error>
+            </mat-form-field>
+        </form>
+        <div class="row">
+            <div class="col-1">
+                <button mat-raised-button color="primary" class="margin-r10 button-defaul" style="border-radius: 10px;margin: 0 411px;" (click)="doUpdate()">
+                    <span><i class="fa fa-save"></i> Lưu</span>
+                </button>
+            </div>
+            <div class="col-1">
+                <button mat-raised-button color="primary" class="margin-r10 button-defaul" style="border-radius: 10px;margin: 0 439px;" (click)="changePassword()" >
+                    <span><i class="fa fa-edit"></i> Đổi mật khẩu</span>
+                </button>
+            </div>
+            <div class="col-1">
+                <button mat-raised-button color="warn" class="margin-r10 button-defaul" style="border-radius: 10px;margin: 0 190px;" (click)="goBack()">
+                  <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>  Quay lại
+                </button>
+            </div>
+        </div>
+    </mat-card>
+</mat-card-content>
